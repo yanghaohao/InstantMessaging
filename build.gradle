@@ -3,7 +3,7 @@
 buildscript {
     ext.compile_sdk_version = 29
     ext.build_tool_version = "29.0.2"
-    ext.min_sdk_version = 19
+    ext.min_sdk_version = 24
     ext.target_sdk_version = 29
     ext.support_version = '29.0.2'
     ext.anko_version = '0.10.0'
@@ -11,7 +11,6 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.2'
@@ -25,7 +24,12 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        maven { url 'http://developer.huawei.com/repo'} //如果需要使用华为推送HMS，则需要加上此句
+        maven {url 'https://dl.bintray.com/chaozhouzhang/maven' }
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
     }
 }
 

@@ -5,23 +5,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.itheima.im.ui.activity.MainActivity">
+    android:orientation="vertical">
 
-    <FrameLayout
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/fragment_frame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-    </FrameLayout>
+    </androidx.viewpager.widget.ViewPager>
 
-    <com.roughike.bottombar.BottomBar
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:bb_tabXmlResource="@xml/bottombar_tabs"
-        app:bb_activeTabColor="@color/qq_blue">
-    </com.roughike.bottombar.BottomBar>
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:itemIconTint="@drawable/bottom_selector"
+        app:itemTextColor="@drawable/bottom_selector"
+        app:menu="@menu/nav_menu"/>
 
 
 

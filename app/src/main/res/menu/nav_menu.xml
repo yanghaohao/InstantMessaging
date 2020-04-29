@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_message"
+        android:icon="@mipmap/ic_conversation"
+        android:title="@string/message"/>
+
+    <item android:id="@+id/nav_contract"
+        android:icon="@mipmap/ic_contact"
+        android:title="@string/contact"/>
+
+    <item android:id="@+id/nav_trends"
+        android:icon="@mipmap/ic_dynamic"
+        android:title="@string/dynamic"/>
+</menu>
