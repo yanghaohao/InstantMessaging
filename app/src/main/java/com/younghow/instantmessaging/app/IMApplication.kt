@@ -28,7 +28,7 @@ class IMApplication : Application() {
         soundPool.load(instance, R.raw.yulu,0)
     }
 
-    private val messageLisenter = object :EMMessageListener{
+    private val messageListener = object :EMMessageListener{
         override fun onMessageRecalled(p0: MutableList<EMMessage>?) {
 
         }
@@ -98,12 +98,12 @@ class IMApplication : Application() {
 
         Bmob.initialize(this, "0dc96b4ade466b957913e43c3539d286")
 
-        EMClient.getInstance().chatManager().addMessageListener(messageLisenter)
+        EMClient.getInstance().chatManager().addMessageListener(messageListener)
     }
 
     private fun isForeground() : Boolean{
-        val actvityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        for (runningAppProcess in actvityManager.runningAppProcesses){
+        val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        for (runningAppProcess in activityManager.runningAppProcesses){
             if (runningAppProcess.processName == packageName){
                 return runningAppProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND
             }

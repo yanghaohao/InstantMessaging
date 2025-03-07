@@ -7,13 +7,13 @@ import android.widget.RelativeLayout
 import com.hyphenate.chat.EMClient
 import com.younghow.instantmessaging.R
 import com.younghow.instantmessaging.adapter.EMCallBackAdapter
-import com.younghow.instantmessaging.data.AddFrendItem
+import com.younghow.instantmessaging.data.AddFriendItem
 import kotlinx.android.synthetic.main.view_add_friend_item.view.*
 import org.jetbrains.anko.runOnUiThread
 import org.jetbrains.anko.toast
 
 class AddFriendListItemView(context: Context?,attributeSet: AttributeSet? = null) : RelativeLayout(context,attributeSet) {
-    fun bindView(get: AddFrendItem) {
+    fun bindView(get: AddFriendItem) {
         if (get.isAdded){
             add.isEnabled = false
             add.text = context.getString(R.string.already_added)

@@ -1,14 +1,13 @@
 package com.younghow.instantmessaging.contract
 
 interface SplashContract {
-
-    interface Presenter : BasePresenter{
+    interface Presenter : BasePresenter {
         fun checkLoginStatus()
     }
 
-    interface view{
-
+    interface view {
         fun onNotLoggedIn()
+
         fun onLLoggedIn()
     }
 }

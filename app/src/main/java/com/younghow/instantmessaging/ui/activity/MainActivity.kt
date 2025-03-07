@@ -14,13 +14,16 @@ import com.hyphenate.EMMessageListener
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMMessage
 import com.younghow.instantmessaging.R
+import com.younghow.instantmessaging.databinding.ActivityMainBinding
+import com.younghow.instantmessaging.extentions.startActivityEx
 import com.younghow.instantmessaging.ui.fragment.ContractFragment
 import com.younghow.instantmessaging.ui.fragment.MessageFragment
 import com.younghow.instantmessaging.ui.fragment.TendsFragment
+import com.younghow.instantmessaging.vm.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding,MainViewModel>() {
 
     private val fragments = arrayOf(MessageFragment(),ContractFragment(),TendsFragment())
 
@@ -45,10 +48,11 @@ class MainActivity : BaseActivity() {
         }
     }
     override fun setLayout(): Int = R.layout.activity_main
+    override fun getViewModelClass() = MainViewModel::class.java
 
     override fun init() {
         super.init()
-        bottomBar.setOnNavigationItemSelectedListener { item ->
+        binding.bottomBar.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_message -> fragment_frame.currentItem = 0
                 R.id.nav_contract -> fragment_frame.currentItem = 1
@@ -73,9 +77,9 @@ class MainActivity : BaseActivity() {
 
             override fun onPageSelected(position: Int) {
                 when (position) {
-                    0 -> bottomBar.selectedItemId = R.id.nav_message
-                    1 -> bottomBar.selectedItemId = R.id.nav_contract
-                    2 -> bottomBar.selectedItemId = R.id.nav_trends
+                    0 -> binding.bottomBar.selectedItemId = R.id.nav_message
+                    1 -> binding.bottomBar.selectedItemId = R.id.nav_contract
+                    2 -> binding.bottomBar.selectedItemId = R.id.nav_trends
                 }
             }
         })
@@ -88,7 +92,7 @@ class MainActivity : BaseActivity() {
 
             override fun onDisconnected(p0: Int) {
                 if (p0 == EMError.USER_LOGIN_ANOTHER_DEVICE){
-                    startActivity<LoginActivity>()
+                    startActivityEx(LoginActivity::class.java)
                 }
             }
         })
@@ -97,13 +101,13 @@ class MainActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
 
-        val menuView = bottomBar.getChildAt(0) as BottomNavigationMenuView
+        val menuView = binding.bottomBar.getChildAt(0) as BottomNavigationMenuView
         val tab = menuView.getChildAt(0)
         val itemView = tab as BottomNavigationItemView
         val badge = LayoutInflater.from(this).inflate(R.layout.im_badge, menuView, false)
         itemView.addView(badge)
         val textView = badge.findViewById<TextView>(R.id.tv)
-        textView.text = ""+1
+        textView.text = "1"
         textView.visibility = View.VISIBLE
     }
 }

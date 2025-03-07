@@ -8,9 +8,9 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import com.younghow.instantmessaging.R
-import org.jetbrains.anko.sp
+import com.younghow.instantmessaging.extentions.sp
 
-class SlideBar(context: Context?,attributeSet: AttributeSet? = null) : View(context,attributeSet) {
+class SlideBar(context: Context,attributeSet: AttributeSet? = null) : View(context,attributeSet) {
 
     private var sectionHeight = 0f
     private val paint = Paint()
@@ -24,7 +24,7 @@ class SlideBar(context: Context?,attributeSet: AttributeSet? = null) : View(cont
     init {
         paint.apply {
             color = resources.getColor(R.color.qq_section_text_color)
-            textSize = sp(12).toFloat()
+            textSize = 12.sp(context).toFloat()
             textAlign = Paint.Align.CENTER
         }
     }

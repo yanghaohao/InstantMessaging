@@ -5,14 +5,14 @@ import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.FindListener
 import com.hyphenate.chat.EMClient
 import com.younghow.instantmessaging.contract.AddFriendContract
-import com.younghow.instantmessaging.data.AddFrendItem
+import com.younghow.instantmessaging.data.AddFriendItem
 import com.younghow.instantmessaging.data.db.IMDatabase
 import com.younghow.instantmessaging.entity.User
 import org.jetbrains.anko.doAsync
 
 class AddFriendPresenter(val view: AddFriendContract.View) : AddFriendContract.Presenter {
 
-    val addFriendItems = mutableListOf<AddFrendItem>()
+    val addFriendItems = mutableListOf<AddFriendItem>()
 
     override fun search(key: String) {
         val bmobQuery = BmobQuery<User>()
@@ -31,7 +31,7 @@ class AddFriendPresenter(val view: AddFriendContract.View) : AddFriendContract.P
                                 }
                             }
 
-                           val addFriendItem  = AddFrendItem(it.userName!!,it.createdAt,isAdded)
+                           val addFriendItem  = AddFriendItem(it.userName!!,it.createdAt,isAdded)
                             addFriendItems.add(addFriendItem)
                         }
                     }

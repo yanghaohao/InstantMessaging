@@ -7,13 +7,10 @@ import com.hyphenate.chat.EMConversation
 import com.hyphenate.chat.EMMessage
 import com.younghow.instantmessaging.R
 import com.younghow.instantmessaging.adapter.ConversationListAdapter
-import com.younghow.instantmessaging.fragment.BaseFragment
-import kotlinx.android.synthetic.main.fragment_contacts.*
-import kotlinx.android.synthetic.main.header.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
+import com.younghow.instantmessaging.databinding.FragmentConversationBinding
+import com.younghow.instantmessaging.vm.MessageViewModel
 
-class MessageFragment : BaseFragment(){
+class MessageFragment : BaseFragment<FragmentConversationBinding,MessageViewModel>(){
 
     val conversations = mutableListOf<EMConversation>()
     val messageListLisentner = object  : EMMessageListener{
@@ -38,12 +35,13 @@ class MessageFragment : BaseFragment(){
     }
 
     override fun setLayout(): Int = R.layout.fragment_conversation
+    override fun getViewModelClass() = MessageViewModel::class.java
 
     override fun init() {
         super.init()
-        headerTitle.text = getString(R.string.message)
+        binding.header.headerTitle.text = getString(R.string.message)
 
-        recyclerView.apply {
+        binding.recyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = ConversationListAdapter(context,conversations)
