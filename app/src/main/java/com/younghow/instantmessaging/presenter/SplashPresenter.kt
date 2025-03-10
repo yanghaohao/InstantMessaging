@@ -1,13 +1,14 @@
 package com.younghow.instantmessaging.presenter
 
 import com.hyphenate.chat.EMClient
-import com.younghow.instantmessaging.contract.SplashContract
+import com.example.main.SplashContract
 
-class SplashPresenter(private val view: SplashContract.view) : SplashContract.Presenter {
-
+class SplashPresenter(
+    private val view: SplashContract.view,
+) : SplashContract.Presenter {
     override fun checkLoginStatus() {
-       if (isLogginedIn()) view.onLLoggedIn() else view.onNotLoggedIn()
+        if (isLogginedIn()) view.onLLoggedIn() else view.onNotLoggedIn()
     }
 
-    private fun isLogginedIn() : Boolean = EMClient.getInstance().isConnected && EMClient.getInstance().isLoggedInBefore
+    private fun isLogginedIn(): Boolean = EMClient.getInstance().isConnected && EMClient.getInstance().isLoggedInBefore
 }

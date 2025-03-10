@@ -1,0 +1,11 @@
+<resources>
+    <string name="permission_denied">权限被拒绝</string>
+    <string name="user_name_error">用户名不合法，3到20位，首字母必须是英文字符</string>
+    <string name="password_error">密码不合法，3到20位数字</string>
+    <string name="confirm_password_error">密码和确认密码不一致</string>
+    <string name="registering">正在注册</string>
+    <string name="logging">正在登陆</string>
+    <string name="register_failed">注册失败</string>
+    <string name="login_success">登陆成功</string>
+    <string name="login_failed">登陆失败</string>
+</resources>

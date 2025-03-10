@@ -8,17 +8,47 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import com.younghow.instantmessaging.R
-import com.younghow.instantmessaging.extentions.sp
+import com.example.commen.extentions.sp
 
-class SlideBar(context: Context,attributeSet: AttributeSet? = null) : View(context,attributeSet) {
-
+class SlideBar(
+    context: Context,
+    attributeSet: AttributeSet? = null,
+) : View(context, attributeSet) {
     private var sectionHeight = 0f
     private val paint = Paint()
     private var textBaseLine = 0f
-    var onSectionChange:onSectionChangeLisenter? = null
+    var onSectionChange: onSectionChangeLisenter? = null
 
-    companion object{
-            private val SECTIONS = arrayOf("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
+    companion object {
+        private val SECTIONS =
+            arrayOf(
+                "A",
+                "B",
+                "C",
+                "D",
+                "E",
+                "F",
+                "G",
+                "H",
+                "I",
+                "J",
+                "K",
+                "L",
+                "M",
+                "N",
+                "O",
+                "P",
+                "Q",
+                "R",
+                "S",
+                "T",
+                "U",
+                "V",
+                "W",
+                "X",
+                "Y",
+                "Z",
+            )
     }
 
     init {
@@ -29,33 +59,39 @@ class SlideBar(context: Context,attributeSet: AttributeSet? = null) : View(conte
         }
     }
 
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+    override fun onSizeChanged(
+        w: Int,
+        h: Int,
+        oldw: Int,
+        oldh: Int,
+    ) {
         super.onSizeChanged(w, h, oldw, oldh)
-        sectionHeight = h*1.0f/ SECTIONS.size
+        sectionHeight = h * 1.0f / SECTIONS.size
 
         val fontMetrics = paint.fontMetrics
         val textHeight = fontMetrics.descent - fontMetrics.ascent
-        textBaseLine = sectionHeight/2 + (textHeight/2 - fontMetrics.descent)
+        textBaseLine = sectionHeight / 2 + (textHeight / 2 - fontMetrics.descent)
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        val x = width * 1.0f/2
+        val x = width * 1.0f / 2
         var baseLine = textBaseLine
         SECTIONS.forEach {
-            canvas.drawText(it,x,baseLine,paint)
-            baseLine+=sectionHeight
+            canvas.drawText(it, x, baseLine, paint)
+            baseLine += sectionHeight
         }
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        when(event.action){
-            MotionEvent.ACTION_DOWN ,MotionEvent.ACTION_MOVE -> {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
                 setBackgroundResource(R.drawable.bg_slide_bar)
                 val index = getTouchIndex(event)
                 val firstLetter = SECTIONS[index]
                 onSectionChange!!.onSectionChange(firstLetter)
             }
+
             MotionEvent.ACTION_UP -> {
                 setBackgroundColor(Color.TRANSPARENT)
                 onSectionChange!!.onSlideFinish()
@@ -65,17 +101,18 @@ class SlideBar(context: Context,attributeSet: AttributeSet? = null) : View(conte
     }
 
     private fun getTouchIndex(event: MotionEvent): Int {
-        var index =  (event.y/sectionHeight).toInt()
-        if (index < 0){
+        var index = (event.y / sectionHeight).toInt()
+        if (index < 0) {
             index = 0
-        }else if (index>= SECTIONS.size){
+        } else if (index >= SECTIONS.size) {
             index = SECTIONS.size - 1
         }
         return index
     }
 
-    interface onSectionChangeLisenter{
-        fun onSectionChange(firstLetter:String)
+    interface onSectionChangeLisenter {
+        fun onSectionChange(firstLetter: String)
+
         fun onSlideFinish()
     }
 }

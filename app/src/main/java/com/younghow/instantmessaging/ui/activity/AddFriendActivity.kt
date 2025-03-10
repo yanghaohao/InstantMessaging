@@ -2,8 +2,9 @@ package com.younghow.instantmessaging.ui.activity
 
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.commen.base.BaseActivity
 import com.younghow.instantmessaging.R
-import com.younghow.instantmessaging.adapter.AddFriendListAdapter
+import com.example.contacts.adapter.AddFriendListAdapter
 import com.younghow.instantmessaging.contract.AddFriendContract
 import com.younghow.instantmessaging.databinding.ActivityAddFriendBinding
 import com.younghow.instantmessaging.presenter.AddFriendPresenter

@@ -45,18 +45,18 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
-        <activity android:name=".ui.activity.SplashActivity">
+        <activity android:name="com.example.main.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.MainActivity"></activity>
-        <activity android:name=".ui.activity.LoginActivity"></activity>
-        <activity android:name=".ui.activity.RegisterActivity"></activity>
-        <activity android:name=".ui.activity.ChatActivity"
-            android:parentActivityName=".ui.activity.MainActivity"></activity>
+        <activity android:name="com.example.main.activity.MainActivity"></activity>
+        <activity android:name="com.example.main.activity.LoginActivity"></activity>
+        <activity android:name="com.example.main.activity.RegisterActivity"></activity>
+        <activity android:name="com.example.message.activity.ChatActivity"
+            android:parentActivityName="com.example.main.activity.MainActivity"></activity>
         <activity android:name=".ui.activity.AddFriendActivity"></activity>
         <!-- 设置环信应用的AppKey -->
         <meta-data

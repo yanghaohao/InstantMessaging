@@ -1,5 +1,6 @@
 package com.younghow.instantmessaging.contract
 
+import com.example.commen.base.BasePresenter
 import com.hyphenate.chat.EMMessage
 
 interface ChatContract {

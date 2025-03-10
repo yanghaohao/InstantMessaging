@@ -11,7 +11,7 @@ import cn.bmob.v3.Bmob
 import com.hyphenate.EMMessageListener
 import com.hyphenate.chat.*
 import com.younghow.instantmessaging.R
-import com.younghow.instantmessaging.ui.activity.ChatActivity
+import com.example.message.activity.ChatActivity
 
 class IMApplication : Application() {
 
@@ -64,7 +64,7 @@ class IMApplication : Application() {
                 contentText = (it.body as EMTextMessageBody).message
             }
 
-            val intent = Intent(this,ChatActivity::class.java)
+            val intent = Intent(this, ChatActivity::class.java)
             intent.putExtra("username",it.conversationId())
             val taskStackBuilder = TaskStackBuilder.create(this).addParentStack(ChatActivity::class.java).addNextIntent(intent)
             val pendingIntent = taskStackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT)

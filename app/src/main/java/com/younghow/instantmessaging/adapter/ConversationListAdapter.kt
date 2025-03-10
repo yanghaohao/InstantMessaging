@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hyphenate.chat.EMConversation
-import com.younghow.instantmessaging.extentions.startActivityEx
-import com.younghow.instantmessaging.ui.activity.ChatActivity
+import com.example.commen.extentions.startActivityEx
+import com.example.message.activity.ChatActivity
 import com.younghow.instantmessaging.weight.ConversationListItemView
 
 class ConversationListAdapter(
