@@ -4,31 +4,34 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.data.bean.Message
 import com.example.data.bean.MessageItem
 import com.example.message.databinding.ViewConversationItemBinding
 
 class ConversationListAdapter(
     val context: Context,
     private val conversations: MutableList<MessageItem>,
-) : RecyclerView.Adapter<ConversationListAdapter.ConversationListItemViewHolder>() {
+) : ListAdapter<MessageItem, ConversationListAdapter.ConversationListItemViewHolder>(
+        MessageItemComparator(),
+    ) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
-    ): ConversationListAdapter.ConversationListItemViewHolder {
-        val binding = ViewConversationItemBinding.inflate(LayoutInflater.from(context),parent,false)
+    ): ConversationListItemViewHolder {
+        val binding =
+            ViewConversationItemBinding.inflate(LayoutInflater.from(context), parent, false)
         val conversationListItemViewHolder =
             ConversationListItemViewHolder(binding.root)
         conversationListItemViewHolder.binding = binding
         return conversationListItemViewHolder
     }
 
-
     override fun getItemCount(): Int = conversations.size
 
     override fun onBindViewHolder(
-        holder: ConversationListAdapter.ConversationListItemViewHolder,
+        holder: ConversationListItemViewHolder,
         position: Int,
     ) {
         holder.bind(conversations[position])
@@ -39,8 +42,19 @@ class ConversationListAdapter(
     ) : RecyclerView.ViewHolder(itemView) {
         lateinit var binding: ViewConversationItemBinding
 
-        fun bind(message: MessageItem){
-
+        fun bind(message: MessageItem) {
         }
+    }
+
+    class MessageItemComparator : DiffUtil.ItemCallback<MessageItem>() {
+        override fun areItemsTheSame(
+            oldItem: MessageItem,
+            newItem: MessageItem,
+        ): Boolean = oldItem === newItem
+
+        override fun areContentsTheSame(
+            oldItem: MessageItem,
+            newItem: MessageItem,
+        ): Boolean = oldItem.acceptId == newItem.acceptId
     }
 }

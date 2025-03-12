@@ -4,15 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contacts.databinding.ItemContactItemBinding
 import com.example.data.bean.Friend
 
 class ContactListAdapter(
     private val context: Context,
-) : RecyclerView.Adapter<ContactListAdapter.ContactListViewHolder>() {
-    private lateinit var friends: List<Friend>
-
+) : ListAdapter<Friend,ContactListAdapter.ContactListViewHolder>(FriendComparator()) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
@@ -23,13 +23,11 @@ class ContactListAdapter(
         return viewHolder
     }
 
-    override fun getItemCount(): Int = friends.size
-
     override fun onBindViewHolder(
         holder: ContactListViewHolder,
         position: Int,
     ) {
-        holder.bind(friends[position])
+        holder.bind(getItem(position))
     }
 
     class ContactListViewHolder(
@@ -39,5 +37,17 @@ class ContactListAdapter(
 
         fun bind(friend: Friend) {
         }
+    }
+
+    class FriendComparator : DiffUtil.ItemCallback<Friend>() {
+        override fun areItemsTheSame(
+            oldItem: Friend,
+            newItem: Friend,
+        ): Boolean = oldItem === newItem
+
+        override fun areContentsTheSame(
+            oldItem: Friend,
+            newItem: Friend,
+        ): Boolean = oldItem.id == newItem.id
     }
 }

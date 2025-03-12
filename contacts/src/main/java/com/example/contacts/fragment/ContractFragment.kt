@@ -2,9 +2,9 @@ package com.example.contacts.fragment
 
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.commen.view.SlideBar
 import com.example.commen.base.BaseFragment
 import com.example.commen.extentions.toast
+import com.example.commen.view.SlideBar
 import com.example.contacts.R
 import com.example.contacts.adapter.ContactListAdapter
 import com.example.contacts.databinding.FragmentContactsBinding
@@ -17,7 +17,6 @@ class ContractFragment :
     val presenter = ContactPresenter(this)
 
     override fun setLayout(): Int = R.layout.fragment_contacts
-
 
     override fun init() {
         super.init()

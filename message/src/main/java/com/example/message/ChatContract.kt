@@ -21,9 +21,9 @@ interface ChatContract {
     }
 
     interface View {
-        fun onStarSendMeesage()
+        fun onStarSendMessage()
 
-        fun onSendMessgeSuccess()
+        fun onSendMessageSuccess()
 
         fun onSendMessageFail()
 
