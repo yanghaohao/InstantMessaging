@@ -1,6 +1,6 @@
 package com.example.contacts.interfaces
 
-import com.example.commen.base.BasePresenter
+import com.example.commen.interfaces.BasePresenter
 
 interface ContactContract {
     interface Presenter : BasePresenter {

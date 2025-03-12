@@ -7,6 +7,11 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import java.io.Serializable
 
+fun <T : Activity> Context.startActivityEx(clazz: Class<T>) {
+    val intent = Intent(this, clazz)
+    startActivity(intent)
+}
+
 fun <T : Activity, S : Serializable> Context.startActivityEx(
     clazz: Class<T>,
     vararg pair: Pair<String, S>,
@@ -22,6 +27,8 @@ fun Context.toast(content: String) {
     Toast.makeText(this, content, Toast.LENGTH_SHORT).show()
 }
 
-fun Context.toast(@StringRes content: Int) {
+fun Context.toast(
+    @StringRes content: Int,
+) {
     Toast.makeText(this, content, Toast.LENGTH_SHORT).show()
 }

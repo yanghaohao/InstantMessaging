@@ -1,13 +1,6 @@
 <resources>
     <string name="app_name">IM</string>
-    <string name="message">消息</string>
-    <string name="contact">联系人</string>
-    <string name="load_contacts_failed">加载联系人失败</string>
     <string name="friend_not_found">未找到好友</string>
-    <string name="add_friend">添加好友</string>
-    <string name="searching">搜索中...</string>
-    <string name="search_failed">搜索失败</string>
-    <string name="search_success">搜索成功</string>
     <string name="add">添加</string>
     <string name="already_added">已添加</string>
     <string name="send_add_friend_failed">发送好友申请失败</string>
@@ -18,14 +11,9 @@
     <string name="delete_friend_failed">删除好友失败</string>
     <string name="delete_friend_success">删除好友成功</string>
     <string name="cancel">取消</string>
-    <string name="send">发送</string>
     <string name="chat_title">与%s聊天中</string>
-    <string name="send_message_failed">发送消息失败</string>
-    <string name="send_message_success">发送消息成功</string>
     <string name="no_text_message">非文本消息</string>
     <string name="receive_new_message">收到新消息</string>
     <string name="user_login_another_device">用户在其他设备登录</string>
-    <string name="user_already_exist">用户已存在</string>
-    <string name="register_success">注册成功</string>
     <string name="logout_success">退出登录成功</string>
 </resources>

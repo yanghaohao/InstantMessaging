@@ -7,25 +7,30 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import com.example.commen.R
+import com.example.commen.view.ActionBar
+import com.example.data.helper.RepositoryHelper
 
-abstract class BaseActivity<DB : ViewDataBinding, VM : ViewModel> : AppCompatActivity() {
+abstract class BaseActivity<DB : ViewDataBinding> : AppCompatActivity() {
     private val progressDialog by lazy {
         ProgressDialog(this)
     }
+    val repository = RepositoryHelper.getRepositoryHelper(this.applicationContext)
 
     private val inputMethodManager by lazy {
         getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     }
 
     protected lateinit var binding: DB
-    protected lateinit var viewModel: VM
+    protected var backFuc: (()->Unit)? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, setLayout())
-        viewModel = ViewModelProvider(this).get(getViewModelClass())
+        findViewById<ActionBar>(R.id.action_bar)?.setOnClickListener {
+            backFuc?.invoke()
+            finish()
+        }
 
         init()
     }
@@ -43,8 +48,6 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : ViewModel> : AppCompatAct
     }
 
     protected abstract fun setLayout(): Int
-
-    protected abstract fun getViewModelClass(): Class<VM>
 
     fun hideSoftKeyBoard() {
         inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)

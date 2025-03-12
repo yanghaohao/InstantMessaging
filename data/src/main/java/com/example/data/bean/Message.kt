@@ -15,7 +15,17 @@ data class Message(
     val acceptId: Long,
     @ColumnInfo(name = "is_read")
     val isRead: Boolean,
+    val type: MessageType
 )
+
+enum class MessageType(
+    status: Int,
+) {
+    SYSTEM(0),
+    MINE(1),
+    OTHER(2),
+}
+
 
 @Entity(tableName = "message_List")
 data class MessageItem(

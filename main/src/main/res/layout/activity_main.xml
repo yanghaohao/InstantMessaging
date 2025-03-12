@@ -12,6 +12,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <com.example.commen.view.ActionBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@id/action_bar"
+            app:left_icon_visible="false"/>
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/fragment_frame"
             android:layout_width="match_parent"

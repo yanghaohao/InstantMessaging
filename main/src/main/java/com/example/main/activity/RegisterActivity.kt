@@ -3,18 +3,16 @@ package com.example.main.activity
 import android.widget.Toast
 import com.example.commen.base.BaseActivity
 import com.example.main.R
-import com.younghow.instantmessaging.databinding.ActivityRegisterBinding
-import com.younghow.instantmessaging.presenter.RegisterPresenter
-import com.younghow.instantmessaging.vm.RegisterViewModel
+import com.example.main.RegisterContract
+import com.example.main.databinding.ActivityRegisterBinding
+import com.example.main.presenter.RegisterPresenter
 
 class RegisterActivity :
-    BaseActivity<ActivityRegisterBinding, RegisterViewModel>(),
+    BaseActivity<ActivityRegisterBinding>(),
     RegisterContract.View {
     private val presenter = RegisterPresenter(this)
 
     override fun setLayout(): Int = R.layout.activity_register
-
-    override fun getViewModelClass() = RegisterViewModel::class.java
 
     override fun onUserNameError() {
         binding.userName.error = getString(R.string.user_name_error)

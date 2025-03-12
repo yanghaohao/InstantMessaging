@@ -7,12 +7,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import com.example.data.helper.RepositoryHelper
 
-abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel> : Fragment() {
+abstract class BaseFragment<DB : ViewDataBinding> : Fragment() {
     protected lateinit var binding: DB
-    protected lateinit var viewModel: VM
+    val repository = RepositoryHelper.getRepositoryHelper(requireActivity().applicationContext)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,7 +19,6 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel> : Fragment() {
         savedInstanceState: Bundle?,
     ) = run {
         binding = DataBindingUtil.inflate(layoutInflater, setLayout(), container, false)
-        viewModel = ViewModelProvider(this)[getViewModelClass()]
 
         binding.root
     }
@@ -33,6 +31,4 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel> : Fragment() {
     open fun init() {}
 
     protected abstract fun setLayout(): Int
-
-    protected abstract fun getViewModelClass(): Class<VM>
 }

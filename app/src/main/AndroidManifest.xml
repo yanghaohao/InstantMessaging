@@ -57,7 +57,7 @@
         <activity android:name="com.example.main.activity.RegisterActivity"></activity>
         <activity android:name="com.example.message.activity.ChatActivity"
             android:parentActivityName="com.example.main.activity.MainActivity"></activity>
-        <activity android:name=".ui.activity.AddFriendActivity"></activity>
+        <activity android:name="com.example.contacts.activity.AddFriendActivity"></activity>
         <!-- 设置环信应用的AppKey -->
         <meta-data
             android:name="EASEMOB_APPKEY"

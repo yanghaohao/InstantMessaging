@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ActionBar">
+        <attr name="left_icon" format="reference" />
+        <attr name="title" format="string" />
+        <attr name="status" format="string" />
+        <attr name="right_icon" format="reference" />
+        <attr name="left_icon_visible" format="boolean"/>
+    </declare-styleable>
+
+</resources>

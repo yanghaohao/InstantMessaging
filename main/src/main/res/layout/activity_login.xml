@@ -14,7 +14,6 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@mipmap/avatar_9"
             android:layout_margin="20dp"
             android:scaleType="centerCrop"
             android:layout_gravity="center_horizontal" />

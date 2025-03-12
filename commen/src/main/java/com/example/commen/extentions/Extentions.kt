@@ -1,6 +1,8 @@
 package com.example.commen.extentions
 
 import android.content.Context
+import android.graphics.Color
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 fun String.isValidUserName(): Boolean = this.matches(Regex("^[a-zA-Z]\\w{2,19}$"))
 
@@ -42,3 +44,5 @@ fun Int.sp(context: Context): Int {
     val fontScale = context.resources.displayMetrics.scaledDensity
     return (this / fontScale + 0.5f).toInt()
 }
+
+

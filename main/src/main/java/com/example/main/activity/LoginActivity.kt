@@ -4,24 +4,18 @@ import android.content.pm.PackageManager
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.example.commen.base.BaseActivity
-import com.younghow.instantmessaging.R
-import com.younghow.instantmessaging.contract.LoginContract
-import com.younghow.instantmessaging.databinding.ActivityLoginBinding
 import com.example.commen.extentions.startActivityEx
+import com.example.main.LoginContract
 import com.example.main.R
 import com.example.main.databinding.ActivityLoginBinding
-import com.example.main.vm.LoginViewModel
-import com.younghow.instantmessaging.presenter.LoginPresenter
-import com.younghow.instantmessaging.vm.LoginViewModel
+import com.example.main.presenter.LoginPresenter
 
 class LoginActivity :
-    BaseActivity<ActivityLoginBinding, LoginViewModel>(),
+    BaseActivity<ActivityLoginBinding>(),
     LoginContract.view {
     private val presenter = LoginPresenter(this)
 
     override fun setLayout(): Int = R.layout.activity_login
-
-    override fun getViewModelClass() = LoginViewModel::class.java
 
     override fun onUserNameError() {
         binding.userName.error = getString(R.string.user_name_error)
@@ -35,20 +29,20 @@ class LoginActivity :
         showProgress(getString(R.string.logging))
     }
 
-    override fun onLogedInSuccess() {
+    override fun onLoginSuccess() {
         dismissDialogProgress()
         Toast.makeText(this, this.getText(R.string.login_success), Toast.LENGTH_SHORT).show()
         startActivityEx(MainActivity::class.java)
     }
 
-    override fun onLogedInFail() {
+    override fun onLoginFail() {
         dismissDialogProgress()
         Toast.makeText(this, this.getText(R.string.login_failed), Toast.LENGTH_SHORT).show()
     }
 
     override fun init() {
         super.init()
-        applayWriteExternalStoragePermission()
+        applyWriteExternalStoragePermission()
         binding.newUser.setOnClickListener { startActivityEx(RegisterActivity::class.java) }
         binding.login.setOnClickListener { login() }
         binding.password.setOnEditorActionListener { _, _, _ ->
@@ -83,7 +77,7 @@ class LoginActivity :
         return result == PackageManager.PERMISSION_GRANTED
     }
 
-    private fun applayWriteExternalStoragePermission() {
+    private fun applyWriteExternalStoragePermission() {
         val permissions = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
         ActivityCompat.requestPermissions(this, permissions, 0)
     }

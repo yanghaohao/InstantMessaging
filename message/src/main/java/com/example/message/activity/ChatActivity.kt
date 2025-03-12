@@ -2,64 +2,27 @@ package com.example.message.activity
 
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.commen.base.BaseActivity
-import com.example.main.R
-import com.hyphenate.EMMessageListener
-import com.hyphenate.chat.EMClient
-import com.hyphenate.chat.EMMessage
-import com.younghow.instantmessaging.adapter.MessageListAdapter
-import com.younghow.instantmessaging.contract.ChatContract
-import com.younghow.instantmessaging.databinding.ActivityChatBinding
-import com.younghow.instantmessaging.presenter.ChatPresenter
-import com.younghow.instantmessaging.vm.ChatViewModel
+import com.example.message.ChatContract
+import com.example.message.ChatPresenter
+import com.example.message.R
+import com.example.message.adapter.MessageListAdapter
+import com.example.message.databinding.ActivityChatBinding
 
-class ChatActivity : BaseActivity<ActivityChatBinding, ChatViewModel>(),ChatContract.View {
+class ChatActivity : BaseActivity<ActivityChatBinding>(), ChatContract.View {
 
     val presenter = ChatPresenter(this)
     lateinit var username:String
     override fun setLayout(): Int = R.layout.activity_chat
-    override fun getViewModelClass() = ChatViewModel::class.java
-
-    private val messageListener = object : EMMessageListener{
-        override fun onMessageRecalled(p0: MutableList<EMMessage>?) {
-        }
-
-        override fun onMessageChanged(p0: EMMessage?, p1: Any?) {
-
-        }
-
-        override fun onCmdMessageReceived(p0: MutableList<EMMessage>?) {
-            presenter.addMessage(username,p0)
-            runOnUiThread { binding.recyclerView.adapter?.notifyDataSetChanged() }
-            scrollToBottom()
-        }
-
-        override fun onMessageReceived(p0: MutableList<EMMessage>?) {
-        }
-
-        override fun onMessageDelivered(p0: MutableList<EMMessage>?) {
-        }
-
-        override fun onMessageRead(p0: MutableList<EMMessage>?) {
-        }
-    }
 
     override fun init() {
         super.init()
-        initHeader()
-
         initEditText()
-
         binding.send.setOnClickListener { sendMessages() }
-
         initRecyclerView()
-
-        EMClient.getInstance().chatManager().addMessageListener(messageListener)
-
         presenter.loadMessage(username)
     }
 
@@ -108,14 +71,6 @@ class ChatActivity : BaseActivity<ActivityChatBinding, ChatViewModel>(),ChatCont
         })
     }
 
-    private fun initHeader() {
-        binding.header.back.visibility = View.VISIBLE
-        binding.header.back.setOnClickListener { finish() }
-
-        username = intent.getStringExtra("username")
-        binding.header.headerTitle.text = username
-    }
-
     override fun onStarSendMeesage() {
         binding.recyclerView.adapter!!.notifyDataSetChanged()
     }
@@ -149,6 +104,6 @@ class ChatActivity : BaseActivity<ActivityChatBinding, ChatViewModel>(),ChatCont
 
     override fun onDestroy() {
         super.onDestroy()
-        EMClient.getInstance().chatManager().removeMessageListener(messageListener)
+
     }
 }
