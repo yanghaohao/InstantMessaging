@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
+        <variable
+            name="msgItem"
+            type="com.example.data.bean.MessageItem" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -19,28 +23,29 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
-                android:src="@mipmap/avatar7" />
+                app:glideImg="@{msgItem.headPic}" />
 
             <TextView
                 android:id="@+id/userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:textSize="@dimen/sp_18"
                 android:textColor="@android:color/black"
                 android:layout_toRightOf="@id/avatar"
                 android:layout_alignTop="@id/avatar"
-                android:text="test" />
+                android:text="@{msgItem.userName}" />
 
             <TextView
                 android:id="@+id/lastMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:singleLine="true"
                 android:textSize="14sp"
                 android:textColor="@color/qq_gray_dark"
                 android:layout_toRightOf="@id/avatar"
                 android:layout_alignBottom="@id/avatar"
-                android:text="Hello" />
+                android:text="@{msgItem.lastMsgContent}" />
 
             <TextView
                 android:id="@id/timestamp"
@@ -48,7 +53,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="@color/qq_gray_dark"
-                android:text="17:47"
+                app:timeStamp="@{msgItem.updateTime}"
+                app:isMsgItem="@{true}"
                 android:layout_alignParentRight="true"
                 android:layout_margin="10dp" />
 
@@ -57,11 +63,11 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:gravity="center"
-                android:textSize="10sp"
+                android:textSize="@dimen/sp_10"
                 android:textColor="@android:color/white"
                 android:padding="2dp"
                 android:layout_marginRight="10dp"
-                android:text="20"
+                android:text="@{String.valueOf(msgItem.unreadCount)}"
                 android:background="@drawable/bg_unread_text"
                 android:layout_alignParentRight="true"
                 android:layout_alignBottom="@id/avatar" />

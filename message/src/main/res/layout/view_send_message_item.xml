@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
+        <variable
+            name="msg"
+            type="com.example.data.bean.Message" />
     </data>
 
     <LinearLayout
@@ -18,7 +22,8 @@
             android:textColor="@color/qq_gray_dark"
             android:layout_gravity="center_horizontal"
             android:textSize="14sp"
-            android:text="上午9:30" />
+            app:timeStamp="@{msg.createTime}"
+            app:isMsgItem="@{false}" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -28,7 +33,7 @@
                 android:id="@+id/avatar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/avatar6"
+                app:glideImg="@{msg.headPic}"
                 android:layout_margin="8dp"
                 android:layout_alignParentRight="true" />
 
@@ -37,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/avatar"
-                android:text="Hello"
+                android:text="@{msg.content}"
                 android:gravity="center"
                 android:background="@drawable/send_msg_normal"
                 android:padding="5dp" />
@@ -46,6 +51,7 @@
                 android:id="@+id/sendMessageProgress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:sendSuccess="@{msg.sendSuccess}"
                 android:src="@drawable/send_message_progress"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/sendMessage" />

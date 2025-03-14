@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.commen.base.BaseActivity
-import com.example.message.ChatContract
+import com.example.message.interfaces.ChatContract
 import com.example.message.ChatPresenter
 import com.example.message.R
 import com.example.message.adapter.MessageListAdapter

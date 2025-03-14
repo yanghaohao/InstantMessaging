@@ -15,7 +15,13 @@ data class Message(
     val acceptId: Long,
     @ColumnInfo(name = "is_read")
     val isRead: Boolean,
-    val type: MessageType
+    val type: MessageType,
+    @ColumnInfo(name = "create_time")
+    val createTime: Long,
+    @ColumnInfo(name = "head_pic")
+    val headPic: String,
+    @ColumnInfo(name = "send_success")
+    val sendSuccess: Int,
 )
 
 enum class MessageType(
@@ -26,7 +32,6 @@ enum class MessageType(
     OTHER(2),
 }
 
-
 @Entity(tableName = "message_List")
 data class MessageItem(
     @PrimaryKey
@@ -34,5 +39,13 @@ data class MessageItem(
     @ColumnInfo(name = "accept_id")
     val acceptId: Long,
     @ColumnInfo(name = "update_time")
-    val updateTime: Long
+    val updateTime: Long,
+    @ColumnInfo(name = "head_pic")
+    val headPic: String,
+    @ColumnInfo(name = "user_name")
+    val userName: String,
+    @ColumnInfo(name = "last_msg_content")
+    val lastMsgContent: String,
+    @ColumnInfo(name = "unread_count")
+    val unreadCount: Int,
 )

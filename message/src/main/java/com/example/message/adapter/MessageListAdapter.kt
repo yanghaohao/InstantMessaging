@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.data.bean.Message
 import com.example.data.bean.MessageType
+import com.example.message.databinding.ItemSystemMessageBinding
 import com.example.message.databinding.ViewReceiveMessageItemBinding
 import com.example.message.databinding.ViewSendMessageItemBinding
 
@@ -55,10 +56,10 @@ class MessageListAdapter(
 
             else -> {
                 val sendBinding =
-                    ViewSendMessageItemBinding.inflate(LayoutInflater.from(context), parent, false)
-                val sendMessageViewHolder = SendMessageViewHolder(sendBinding.root)
-                sendMessageViewHolder.binding = sendBinding
-                sendMessageViewHolder
+                    ItemSystemMessageBinding.inflate(LayoutInflater.from(context), parent, false)
+                val systemMessageViewHolder = SystemMessageViewHolder(sendBinding.root)
+                systemMessageViewHolder.binding = sendBinding
+                systemMessageViewHolder
             }
         }
 
@@ -111,7 +112,12 @@ class MessageListAdapter(
 
     class SystemMessageViewHolder(
         itemView: View,
-    ) : RecyclerView.ViewHolder(itemView)
+    ) : RecyclerView.ViewHolder(itemView) {
+        lateinit var binding: ItemSystemMessageBinding
+
+        fun bind(message: Message) {
+        }
+    }
 
     class MessageComparator : DiffUtil.ItemCallback<Message>() {
         override fun areItemsTheSame(
