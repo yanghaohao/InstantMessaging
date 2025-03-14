@@ -1,6 +1,5 @@
 package com.example.commen.base
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
@@ -8,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.example.commen.R
+import com.example.commen.dialog.ProgressDialog
 import com.example.commen.view.ActionBar
 import com.example.data.helper.RepositoryHelper
 
@@ -22,12 +22,12 @@ abstract class BaseActivity<DB : ViewDataBinding> : AppCompatActivity() {
     }
 
     protected lateinit var binding: DB
-    protected var backFuc: (()->Unit)? = null
+    protected var backFuc: (() -> Unit)? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, setLayout())
-        findViewById<ActionBar>(R.id.action_bar)?.setOnClickListener {
+        findViewById<ActionBar>(R.id.action_bar)?.setBackListener {
             backFuc?.invoke()
             finish()
         }

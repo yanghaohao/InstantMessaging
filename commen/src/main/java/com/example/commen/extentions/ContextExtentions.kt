@@ -30,5 +30,5 @@ fun Context.toast(content: String) {
 fun Context.toastForRes(
     @StringRes content: Int,
 ) {
-    Toast.makeText(this, content, Toast.LENGTH_SHORT).show()
+    Toast.makeText(this, this.getString(content), Toast.LENGTH_SHORT).show()
 }
