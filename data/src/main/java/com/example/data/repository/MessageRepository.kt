@@ -14,7 +14,7 @@ class MessageRepository(
         messageDao.insertAll(message)
     }
 
-    fun getAllFriends(uid: Long): Flow<List<Message>> = messageDao.getAll(uid)
+    fun getAllMessage(uid: Long): Flow<List<Message>> = messageDao.getAll(uid)
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread

@@ -21,7 +21,7 @@ data class Message(
     @ColumnInfo(name = "head_pic")
     val headPic: String,
     @ColumnInfo(name = "send_success")
-    val sendSuccess: Int,
+    var sendSuccess: Int,
 )
 
 enum class MessageType(

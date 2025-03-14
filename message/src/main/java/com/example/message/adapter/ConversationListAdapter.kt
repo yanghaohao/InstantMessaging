@@ -12,7 +12,6 @@ import com.example.message.databinding.ViewConversationItemBinding
 
 class ConversationListAdapter(
     val context: Context,
-    private val conversations: MutableList<MessageItem>,
 ) : ListAdapter<MessageItem, ConversationListAdapter.ConversationListItemViewHolder>(
         MessageItemComparator(),
     ) {
@@ -28,13 +27,11 @@ class ConversationListAdapter(
         return conversationListItemViewHolder
     }
 
-    override fun getItemCount(): Int = conversations.size
-
     override fun onBindViewHolder(
         holder: ConversationListItemViewHolder,
         position: Int,
     ) {
-        holder.bind(conversations[position])
+        holder.bind(getItem(position))
     }
 
     class ConversationListItemViewHolder(
@@ -43,6 +40,7 @@ class ConversationListAdapter(
         lateinit var binding: ViewConversationItemBinding
 
         fun bind(message: MessageItem) {
+            binding.msgItem = message
         }
     }
 

@@ -8,7 +8,7 @@ import com.example.data.repository.MessageRepository
 import com.example.data.repository.MineRepository
 
 class DatabaseHelper(val context: Context) {
-    val database by lazy {
+    private val database by lazy {
         FriendsRoomDatabase.getDatabase(context)
     }
     val friendsRepository by lazy {

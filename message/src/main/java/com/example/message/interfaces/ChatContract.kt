@@ -14,21 +14,11 @@ interface ChatContract {
             username: String,
             list: MutableList<Message>?,
         )
-
-        fun loadMessage(username: String)
-
-        fun loadMoreMessage(username: String)
     }
 
     interface View {
         fun onStarSendMessage()
 
-        fun onSendMessageSuccess()
-
-        fun onSendMessageFail()
-
-        fun onMessageLoaded()
-
-        fun onMoreMessageLoaded(size: Int)
+        fun onSendMessageStatusChange(success: Boolean)
     }
 }

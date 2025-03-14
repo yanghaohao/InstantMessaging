@@ -58,6 +58,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="15sp"
                 android:layout_margin="5dp"
+                app:sendEnable="@{()->vm.sendEnable(edit)}"
                 android:onClick="@{()->vm.sendMessage(edit.text.toString())}"
                 android:text="@string/send" />
 

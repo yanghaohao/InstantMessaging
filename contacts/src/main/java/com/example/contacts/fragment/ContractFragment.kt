@@ -4,7 +4,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.commen.base.BaseFragment
-import com.example.commen.extentions.toast
+import com.example.commen.extentions.toastForRes
 import com.example.commen.view.SlideBar
 import com.example.contacts.R
 import com.example.contacts.adapter.ContactListAdapter
@@ -72,6 +72,6 @@ class ContractFragment :
 
     override fun onLoadContactFail() {
         binding.swipeRefreshLayout.isRefreshing = false
-        requireContext().toast(R.string.load_contacts_failed)
+        requireContext().toastForRes(R.string.load_contacts_failed)
     }
 }

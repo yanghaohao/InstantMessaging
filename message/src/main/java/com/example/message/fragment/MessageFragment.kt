@@ -13,7 +13,7 @@ class MessageFragment : BaseFragment<FragmentConversationBinding>() {
         binding.recyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = ConversationListAdapter(context, arrayListOf())
+            adapter = ConversationListAdapter(context)
         }
     }
 }

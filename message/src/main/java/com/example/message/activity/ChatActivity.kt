@@ -1,37 +1,53 @@
 package com.example.message.activity
 
-import android.text.Editable
-import android.text.TextWatcher
-import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.commen.base.BaseActivity
-import com.example.message.interfaces.ChatContract
-import com.example.message.ChatPresenter
+import com.example.commen.extentions.toastForRes
+import com.example.data.helper.RepositoryHelper
 import com.example.message.R
 import com.example.message.adapter.MessageListAdapter
 import com.example.message.databinding.ActivityChatBinding
+import com.example.message.vm.ChatModelFactory
+import com.example.message.vm.ChatViewModel
 
-class ChatActivity :
-    BaseActivity<ActivityChatBinding>(),
-    ChatContract.View {
-    val presenter = ChatPresenter(this)
-    lateinit var username: String
+class ChatActivity : BaseActivity<ActivityChatBinding>() {
+    private val chatViewModel by viewModels<ChatViewModel> {
+        ChatModelFactory(RepositoryHelper.getRepositoryHelper(this).messageRepository)
+    }
+    val messageListAdapter = MessageListAdapter(this)
 
     override fun setLayout(): Int = R.layout.activity_chat
 
     override fun init() {
         super.init()
-        initEditText()
-        binding.send.setOnClickListener { sendMessages() }
+
+        binding.vm = chatViewModel
         initRecyclerView()
-        presenter.loadMessage(username)
+        initObserver()
+    }
+
+    fun initObserver() {
+        chatViewModel.startSendMsg.observe(this) {
+            messageListAdapter.addMsg(it)
+            scrollToBottom()
+        }
+
+        chatViewModel.sendSuccess.observe(this) {
+            if (it) {
+                this.toastForRes(R.string.send_message_success)
+            } else {
+                this.toastForRes(R.string.send_message_failed)
+            }
+            binding.edit.text.clear()
+        }
     }
 
     private fun initRecyclerView() {
         binding.recyclerView.apply {
             setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, true)
             adapter = MessageListAdapter(context)
             addOnScrollListener(
                 object : RecyclerView.OnScrollListener() {
@@ -43,7 +59,7 @@ class ChatActivity :
                         if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                             val linearLayoutManager = layoutManager as LinearLayoutManager
                             if (linearLayoutManager.findFirstVisibleItemPosition() == 0) {
-                                presenter.loadMoreMessage(username)
+                                chatViewModel.loadMessage(0L)
                             }
                         }
                     }
@@ -52,74 +68,7 @@ class ChatActivity :
         }
     }
 
-    private fun sendMessages() {
-        hideSoftKeyBoard()
-        val message = binding.edit.text.toString()
-        presenter.sendMessage(username, message)
-        binding.edit.setOnEditorActionListener { _, _, _ ->
-            sendMessages()
-            true
-        }
-    }
-
-    private fun initEditText() {
-        binding.edit.addTextChangedListener(
-            object : TextWatcher {
-                override fun afterTextChanged(s: Editable?) {
-                    binding.send.isEnabled = !s.isNullOrEmpty()
-                }
-
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int,
-                ) {
-                }
-
-                override fun onTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    before: Int,
-                    count: Int,
-                ) {
-                }
-            },
-        )
-    }
-
-    override fun onStarSendMessage() {
-        binding.recyclerView.adapter!!.notifyDataSetChanged()
-    }
-
-    override fun onSendMessageSuccess() {
-        binding.recyclerView.adapter!!.notifyDataSetChanged()
-        Toast.makeText(this, this.getText(R.string.send_message_success), Toast.LENGTH_SHORT).show()
-        binding.edit.text.clear()
-        scrollToBottom()
-    }
-
     private fun scrollToBottom() {
-        binding.recyclerView.scrollToPosition(presenter.messages.size - 1)
-    }
-
-    override fun onSendMessageFail() {
-        Toast.makeText(this, this.getText(R.string.send_message_failed), Toast.LENGTH_SHORT).show()
-        binding.recyclerView.adapter!!.notifyDataSetChanged()
-        binding.edit.text.clear()
-    }
-
-    override fun onMessageLoaded() {
-        binding.recyclerView.adapter?.notifyDataSetChanged()
-        scrollToBottom()
-    }
-
-    override fun onMoreMessageLoaded(size: Int) {
-        binding.recyclerView.adapter?.notifyDataSetChanged()
-        binding.recyclerView.scrollToPosition(size)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
+        binding.recyclerView.scrollToPosition(messageListAdapter.itemCount - 1)
     }
 }

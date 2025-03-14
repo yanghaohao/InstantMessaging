@@ -78,6 +78,18 @@ fun showLoadMsg(
 }
 
 @BindingAdapter("actionBarName")
-fun actionBarName(text: ActionBar,name:String){
+fun actionBarName(
+    text: ActionBar,
+    name: String,
+) {
     text.setTitle(name)
 }
+
+@BindingAdapter("sendEnable")
+fun sendEnable(
+    view: View,
+    enable: Boolean,
+) {
+    view.isEnabled = enable
+}
+

@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.example.contacts.vm.AddFriendsViewModel" />
     </data>
 
     <LinearLayout
@@ -28,7 +31,8 @@
                 android:layout_margin="8dp"
                 android:inputType="text"
                 android:imeOptions="actionSearch"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:editSearch="@{()->vm.search(userName.text.toString())}"/>
 
             <ImageView
                 android:id="@+id/search"
@@ -37,9 +41,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_margin="8dp"
+                android:onClick="@{()->vm.search(userName.text.toString())}"
                 android:src="@drawable/search_friend_selector" />
-
-
         </RelativeLayout>
 
         <FrameLayout

@@ -98,6 +98,7 @@ class MessageListAdapter(
         lateinit var binding: ViewSendMessageItemBinding
 
         fun bind(message: Message) {
+            binding.msg = message
         }
     }
 
@@ -107,6 +108,7 @@ class MessageListAdapter(
         lateinit var binding: ViewReceiveMessageItemBinding
 
         fun bind(message: Message) {
+            binding.msg = message
         }
     }
 
@@ -116,6 +118,7 @@ class MessageListAdapter(
         lateinit var binding: ItemSystemMessageBinding
 
         fun bind(message: Message) {
+            binding.msg = message
         }
     }
 
@@ -129,5 +132,10 @@ class MessageListAdapter(
             oldItem: Message,
             newItem: Message,
         ): Boolean = oldItem.id == newItem.id
+    }
+
+    fun addMsg(msg: Message) {
+        currentList.add(msg)
+        notifyItemInserted(itemCount - 1)
     }
 }

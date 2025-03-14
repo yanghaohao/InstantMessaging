@@ -1,4 +1,4 @@
-package com.example.message
+package com.example.message.prestener
 
 import com.example.data.bean.Message
 import com.example.message.interfaces.ChatContract
@@ -22,11 +22,5 @@ class ChatPresenter(
         username: String,
         list: MutableList<Message>?,
     ) {
-    }
-
-    override fun loadMessage(username: String) {
-    }
-
-    override fun loadMoreMessage(username: String) {
     }
 }
