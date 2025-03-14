@@ -9,8 +9,11 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FriendsDao {
-    @Query("SELECT request_id = (:uid) and status = 'accepted' FROM friend_table ORDER BY id ASC")
-    fun getAll(uid: Long): Flow<List<Friend>>
+    @Query("SELECT * FROM friend_table WHERE request_id = (:uid) and status = (:userid) ORDER BY id ASC")
+    fun getAll(
+        uid: Long,
+        userid: Long,
+    ): Flow<List<Friend>>
 
     @Insert
     fun insertAll(vararg users: Friend)

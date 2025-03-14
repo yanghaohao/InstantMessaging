@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MessageDao {
-    @Query("SELECT accept_id = (:uid) FROM message_table ORDER BY id ASC")
+    @Query("SELECT * FROM message_table WHERE accept_id = (:uid) ORDER BY id ASC")
     fun getAll(uid: Long): Flow<List<Message>>
 
     @Insert
@@ -22,6 +22,6 @@ interface MessageDao {
 
 @Dao
 interface MessageListDao {
-    @Query("SELECT accept_id = (:uid) FROM message_list ORDER BY id ASC")
+    @Query("SELECT * FROM message_list WHERE accept_id = (:uid) ORDER BY update_time ASC")
     fun getMessageList(uid: Long): Flow<List<MessageItem>>
 }

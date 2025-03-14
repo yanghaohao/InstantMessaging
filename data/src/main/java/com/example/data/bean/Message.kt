@@ -33,4 +33,6 @@ data class MessageItem(
     val id: Long,
     @ColumnInfo(name = "accept_id")
     val acceptId: Long,
+    @ColumnInfo(name = "update_time")
+    val updateTime: Long
 )

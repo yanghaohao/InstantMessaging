@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">IM</string>
     <string name="friend_not_found">未找到好友</string>
-    <string name="add">添加</string>
     <string name="already_added">已添加</string>
     <string name="send_add_friend_failed">发送好友申请失败</string>
     <string name="send_add_friend_success">发送好友申请成功</string>

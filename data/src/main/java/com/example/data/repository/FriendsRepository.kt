@@ -14,7 +14,7 @@ class FriendsRepository(
         friendsDao.insertAll(friend)
     }
 
-    fun getAllFriends(uid: Long): Flow<List<Friend>> = friendsDao.getAll(uid)
+    fun getAllFriends(uid: Long,userId:Long): Flow<List<Friend>> = friendsDao.getAll(uid,userId)
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread

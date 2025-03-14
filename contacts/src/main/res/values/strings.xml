@@ -4,4 +4,5 @@
     <string name="search_failed">搜索失败</string>
     <string name="search_success">搜索成功</string>
     <string name="load_contacts_failed">加载联系人失败</string>
+    <string name="add">添加</string>
 </resources>
