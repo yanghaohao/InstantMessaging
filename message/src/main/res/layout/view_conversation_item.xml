@@ -33,7 +33,7 @@
                 android:textColor="@android:color/black"
                 android:layout_toRightOf="@id/avatar"
                 android:layout_alignTop="@id/avatar"
-                android:text="@{msgItem.userName}" />
+                android:text="@{msgItem.friendUserName}" />
 
             <TextView
                 android:id="@+id/lastMessage"

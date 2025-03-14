@@ -42,8 +42,8 @@ data class MessageItem(
     val updateTime: Long,
     @ColumnInfo(name = "head_pic")
     val headPic: String,
-    @ColumnInfo(name = "user_name")
-    val userName: String,
+    @ColumnInfo(name = "friend_user_name")
+    val friendUserName: String,
     @ColumnInfo(name = "last_msg_content")
     val lastMsgContent: String,
     @ColumnInfo(name = "unread_count")
